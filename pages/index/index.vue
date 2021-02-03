@@ -13,7 +13,7 @@
 			}
 		},
 		onLoad() {
-		uni.redirectTo({
+		uni.reLaunch({
 		  url:'/pages/login/login'
 		})
 		},
