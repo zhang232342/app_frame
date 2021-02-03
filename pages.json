@@ -4,20 +4,27 @@
 	    },
 	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
 		{
+		    "path" : "pages/login/login",
+		    "style" :                                                                                    
+		    {
+		        "navigationBarTitleText": "",
+		        "enablePullDownRefresh": false,
+				"navigationStyle": "custom" ,
+				"app-plus":{
+				"titleNView":{
+				"autoBackButton":false
+				}
+				}
+		    }
+		    
+		},{
 			"path": "pages/index/index",
 			"style": {
-				"navigationBarTitleText": "移动端快速框架"
+				"navigationBarTitleText": "移动端快速框架",
+				"enablePullDownRefresh": false
 			}
 		}
 	    ,{
-            "path" : "pages/login/login",
-            "style" :                                                                                    
-            {
-                "navigationBarTitleText": "",
-                "enablePullDownRefresh": false
-            }
-            
-        },{
             "path" : "pages/login/forget",
             "style" :                                                                                    
             {
@@ -52,7 +59,40 @@
 		    }
 		    
 		}
+        ,{
+            "path" : "pages/home/home",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "home",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/account/account",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "移动端快速框架",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        
     ],
+	"tabBar": {
+		"color": "#909399",
+		"selectedColor": "#303133",
+		"backgroundColor": "#FFFFFF",
+		"borderStyle": "black",
+		"list": [{
+				"pagePath": "pages/index/index"
+			},
+			{
+				"pagePath": "pages/account/account"
+			}
+			
+		]
+	},
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
 		"navigationBarTitleText": "uni-app",

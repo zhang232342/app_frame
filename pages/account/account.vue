@@ -11,7 +11,7 @@
 	export default {
 		data() {
 			return {
-				title: '首页',
+				title: '个人中心',
 				tabbar: '',
 				inactiveColor: '#909399',
 				activeColor: '#303133'
@@ -21,18 +21,17 @@
 			/**
 			 * 示例中为每个tabbar页面都写了一遍tabbar变量，您可以将tabbar数组写入到vuex中，这样可以全局引用
 			 */
-			this.tabbar = [{
+			this.tabbar = [
+				{
 					iconPath: "home",
 					selectedIconPath: "home-fill",
 					text: '首页',
-					isDot: true,
 					pagePath: "/pages/index/index"
 				},
 				{
 					iconPath: "account",
 					selectedIconPath: "account-fill",
 					text: '个人中心',
-					isDot: true,
 					pagePath: "/pages/account/account"
 				},
 				

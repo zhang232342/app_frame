@@ -169,6 +169,10 @@
 					position: 'bottom',
 					title: '...'
 				});
+				//框架测试按钮跳转到主页
+				uni.reLaunch({
+						url: '../index/index',
+				 		});
 			},
 			login_weibo() {
 				//微博登录
