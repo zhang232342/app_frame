@@ -16,6 +16,8 @@
 		uni.reLaunch({
 		  url:'/pages/login/login'
 		})
+		// uni-app
+		uni.hideHomeButton()
 		},
 		methods: {
 
