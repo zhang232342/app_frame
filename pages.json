@@ -99,6 +99,34 @@
             }
             
         }
+        ,{
+            "path" : "pages/index/content/content",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "移动端快速框架",
+                "enablePullDownRefresh": true
+            }
+            
+        }
+        ,{
+            "path" : "pages/index/search/search",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "查询",
+				"navigationStyle":"custom",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/index/check/check",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "盘点",
+                "enablePullDownRefresh": false
+            }
+            
+        }
     ],
 	"tabBar": {
 		"color": "#909399",

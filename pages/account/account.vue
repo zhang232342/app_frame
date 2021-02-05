@@ -11,7 +11,7 @@
 				</view>
 				<view class="u-flex-1">
 					<view class="u-font-18 u-p-b-20">app frame</view>
-					<view class="u-font-14 u-tips-color">微信号:app_frame</view>
+					<view class="u-font-14 u-tips-color">账号:app_frame</view>
 				</view>
 				<view class="u-m-l-10 u-p-10">
 					<u-icon name="arrow-right" color="#969799" size="28"></u-icon>

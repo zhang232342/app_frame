@@ -3,13 +3,13 @@
 		<view>
 			<u-card :title="title" :sub-title="subTitle" :thumb="thumb" full="full">
 					<view class="" slot="body">
-						<view class="u-body-item u-flex u-border-bottom u-col-between u-p-t-0">
-							<view class="u-body-item-title u-line-2">瓶身描绘的牡丹一如你初妆，冉冉檀香透过窗心事我了然，宣纸上走笔至此搁一半</view>
-							<image src="https://img11.360buyimg.com/n7/jfs/t1/94448/29/2734/524808/5dd4cc16E990dfb6b/59c256f85a8c3757.jpg" mode="aspectFill"></image>
+						<view class="u-body-item u-flex u-border-bottom u-col-between u-p-t-0" @click="contentClick">
+							<view class="u-body-item-title u-line-2">要说给2020做一份总结的话，那就是去年过得确实还不错。我给自己添置了不少电子好物，科技带来美好，生活幸福感蹭蹭的上升。</view>
+							<image src="https://pic2.zhimg.com/80/v2-134135ca6aed213aba48774e7c1902ea_720w.jpg?source=1940ef5c" mode="aspectFill"></image>
 						</view>
 						<view class="u-body-item u-flex u-row-between u-p-b-0">
-							<view class="u-body-item-title u-line-2">釉色渲染仕女图韵味被私藏，而你嫣然的一笑如含苞待放</view>
-							<image src="https://img12.360buyimg.com/n7/jfs/t1/102191/19/9072/330688/5e0af7cfE17698872/c91c00d713bf729a.jpg" mode="aspectFill"></image>
+							<view class="u-body-item-title u-line-2">一项以高精度，高真度渲染图闻名的荷兰科技媒体Let'sGoDigital携手知名设计师Jermaine Smit（油管频道为 Concept Creator）带来了 iPhone 12s Pro的高清概念渲染视频。</view>
+							<image src="https://pic1.zhimg.com/80/v2-f5ac64146d736998fb573f4ea04d9bd4_720w.jpg" mode="aspectFill"></image>
 						</view>
 					</view>
 				</u-card>
@@ -150,8 +150,16 @@
 				// 	type: 'warning'
 				// })
 				if(index == 0){				//调用硬件扫描二维码				uni.scanCode({					//只允许通过调用相机扫码					onlyFromCamera: true,					success: function (res) {					console.log('条码类型：' + res.scanType);                    console.log('条码内容：' + res.result);					 }					});				}else if(index == 1){
+					//查询
+					uni.navigateTo({
+							url: 'check/check',
+					});
 					
 				}else if(index == 2){
+					//查询
+					uni.navigateTo({
+							url: 'search/search',
+					});
 					
 				}else if(index == 3){
 					//表单
@@ -159,6 +167,12 @@
 							url: 'form/form',
 					});
 				}
+			},
+			contentClick(){
+				//公告点击事件
+				uni.navigateTo({
+						url: 'content/content',
+				});
 			},
 			change(e) {
 				this.current = e.detail.current;
