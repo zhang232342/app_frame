@@ -52,12 +52,15 @@
     "mp-weixin" : {
         "appid" : "wx7e1d1201a6eee280",
         "setting" : {
-            "urlCheck" : false
+            "urlCheck" : false,
+            "es6" : true,
+            "postcss" : true,
+            "minified" : true
         },
         "usingComponents" : true,
         "permission" : {
             "scope.userLocation" : {
-                "desc" : "测试"
+                "desc" : "你的位置用于获取对应任务信息"
             }
         }
     },

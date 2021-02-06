@@ -36,8 +36,8 @@
 						<view class="grid-text">表单</view>
 					</u-grid-item>
 					<u-grid-item :index="4">
-						<u-icon name="star" :size="60"></u-icon>
-						<view class="grid-text">星星</view>
+						<u-icon name="map" :size="60"></u-icon>
+						<view class="grid-text">地图</view>
 					</u-grid-item>
 					<u-grid-item :index="5">
 						<u-icon name="volume-up" :size="60"></u-icon>
@@ -165,6 +165,11 @@
 					//表单
 					uni.navigateTo({
 							url: 'form/form',
+					});
+				}else if(index == 4){
+					//表单
+					uni.navigateTo({
+							url: 'maps/maps',
 					});
 				}
 			},

@@ -127,6 +127,15 @@
             }
             
         }
+        ,{
+            "path" : "pages/index/maps/maps",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "地图",
+                "enablePullDownRefresh": false
+            }
+            
+        }
     ],
 	"tabBar": {
 		"color": "#909399",
