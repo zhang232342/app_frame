@@ -13,7 +13,7 @@
 			<view class="u-m-t-20">
 				<u-cell-group>
 					<u-cell-item  title="切换账号" :arrow="false"></u-cell-item>
-					<u-cell-item  title="退出登陆" :arrow="false"></u-cell-item>
+					<u-cell-item  title="退出登陆" :arrow="false" @click="clickOut"></u-cell-item>
 				</u-cell-group>
 			</view>
 			
@@ -21,7 +21,7 @@
 		</view>
 	</view>
 </template>
-
+ 
 <script>
 	export default {
 		data() {
@@ -30,7 +30,12 @@
 			}
 		},
 		methods: {
-			
+			clickOut(){
+				//退出登录
+				uni.navigateTo({
+						url: '/pages/login/login',
+				});
+			}
 		}
 	}
 </script>
