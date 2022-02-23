@@ -149,7 +149,10 @@
 				// 	title: `点击了第${index + 1}宫格`,
 				// 	type: 'warning'
 				// })
-				if(index == 0){				//调用硬件扫描二维码				uni.scanCode({					//只允许通过调用相机扫码					onlyFromCamera: true,					success: function (res) {					console.log('条码类型：' + res.scanType);                    console.log('条码内容：' + res.result);					 }					});				}else if(index == 1){
+				if(index == 0){				//调用硬件扫描二维码				uni.scanCode({					//只允许通过调用相机扫码					onlyFromCamera: true,					success: function (res) {					console.log('条码类型：' + res.scanType);                    console.log('条码内容：' + res.result);
+					uni.navigateTo({
+							url: 'qrCode/qrCode?result='+res.result,
+					});					 }					});				}else if(index == 1){
 					//查询
 					uni.navigateTo({
 							url: 'check/check',

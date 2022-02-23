@@ -1,4 +1,4 @@
-<!-- 忘记密码 -->
+<!-- 修改密码 -->
 <template>
 	<view class="forget">
 		<!-- TopTips 顶部提示 -->
@@ -51,7 +51,7 @@
 				statusBarHeight: uni.getSystemInfoSync().statusBarHeight,
 				// 导航栏内容区域高度，不包括状态栏高度在内
 				navbarHeight: 44,
-				phoneData: "", //电话
+				phoneData: "", //工号"
 				oldPassData: "", //旧密码
 				passData: "", //密码
 				isRotate: false, //是否加载旋转
@@ -73,13 +73,13 @@
 					//判断是否加载中，避免重复点击请求
 					return false;
 				}
-				if (this.phoneData.length != 11) {
-					this.$refs.uTips.show({
-									title: '手机号不正确',
-									type: 'error'
-								});
-				    return false;
-				}
+				// if (this.phoneData.length != 11) {
+				// 	this.$refs.uTips.show({
+				// 					title: '手机号不正确',
+				// 					type: 'error'
+				// 				});
+				//     return false;
+				// }
 				if (this.passData==this.oldPassData) {
 					this.$refs.uTips.show({
 									title: '新密码不能与原始密码一致',
@@ -87,18 +87,50 @@
 								});
 				    return false;
 				}
-			    if (this.passData.length < 6) {
-					this.$refs.uTips.show({
-									title: '密码不正确',
-									type: 'error'
-								});
-			        return false;
-			    }
-				this.$refs.uTips.show({
-								title: '重置密码成功',
-								type: 'primary'
-							});
-				_this.isRotate=true
+				uni.request({
+				    url: 'http://172.50.8.13:8082/api/updateMobileUser', //接口地址
+				    data: {
+				        username: this.phoneData,
+						oldPassData:this.oldPassData,
+						passData: this.passData
+				    },
+				    header: {
+							'content-type':'application/json',},
+				    success: (res) => {
+						_this.isRotate=true;
+						console.log("值："+JSON.stringify(res.data));
+						
+						if(res.statusCode == 200){
+							var status = res.data;
+							console.log("status："+res.data);
+							if(status == "success"){
+								this.$refs.uTips.show({
+												title: '重置成功',
+												type: 'primary'
+											});		
+								console.log("值："+JSON.stringify(res.data));
+								
+								//按钮跳转到主页
+								uni.reLaunch({
+										url: '../index/index',
+								 		});
+							}else if(status == "error"){
+								_this.isRotate=true;
+								this.$refs.uTips.show({
+												title: '重置失败',
+												type: 'error'
+											});
+							}
+								
+						}else{
+							_this.isRotate=true;
+							this.$refs.uTips.show({
+											title: '重置失败',
+											type: 'error'
+										});
+						}																				        
+				    }
+				});
 				setTimeout(function(){
 					_this.isRotate=false
 				},3000)
