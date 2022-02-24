@@ -87,8 +87,9 @@
 								});
 				    return false;
 				}
+					var path  = this.GLOBAL.src; 
 				uni.request({
-				    url: 'http://172.50.8.13:8082/api/updateMobileUser', //接口地址
+				    url: path+'/api/updateMobileUser', //接口地址
 				    data: {
 				        username: this.phoneData,
 						oldPassData:this.oldPassData,

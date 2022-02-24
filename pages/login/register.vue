@@ -110,9 +110,9 @@
 				setTimeout(function(){
 					_this.isRotate=false
 				},3000)
-				
+				var path = this.GLOBAL.src; 
 				uni.request({
-				    url: 'http://172.50.8.13:8082/api/addmobileUser', //接口地址
+				    url: path+'/api/addmobileUser', //接口地址
 				    data: {
 				        username: this.phoneData,
 						password: this.passData,

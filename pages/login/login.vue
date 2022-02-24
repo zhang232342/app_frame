@@ -88,7 +88,7 @@
 					if (value) {
 						//有登录信息
 						console.log("已登录用户：",value.username);
-						_this.$store.dispatch("setUserData",value); //存入状态
+						 uni.setStorageSync('setUserData', value);//存入状态
 						uni.reLaunch({
 								url: '../index/index',
 						 		});
@@ -120,8 +120,9 @@
 				uni.showLoading({
 					title: '登录中'
 				});
+				var path = this.GLOBAL.src; 
 				uni.request({
-				    url: 'http://172.50.8.13:8082/api/mobileLogin', //接口地址
+				    url: path+'/api/mobileLogin', //接口地址
 				    data: {
 				        username: this.phoneData,
 						password: this.passData
@@ -138,7 +139,7 @@
 											"username":this.phoneData,
 											"accesstoken":res.data.value,
 										} //保存用户信息和accesstoken
-										 	_this.$store.dispatch("setUserData",userdata); //存入状态
+											uni.setStorageSync('setUserData', userdata);//存入状态
 										
 								try {
 											uni.setStorageSync('setUserData', userdata); //存入缓存

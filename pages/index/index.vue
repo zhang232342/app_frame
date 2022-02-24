@@ -19,23 +19,23 @@
 			<view class="u-demo-area">
 				<u-toast ref="uToast"></u-toast>
 				<u-grid :col="col" @click="click" v-if="!isSwiper" :border="border">
-					<u-grid-item name="item1" :index="0" @click="itemClick">
+					<u-grid-item name="item1" :index="0" @click="itemClick" v-show="qrCode">
 						<u-icon name="scan" :size="60"></u-icon>
 						<view class="grid-text">扫描二维码</view>
 					</u-grid-item>
-					<u-grid-item :index="1">
+					<u-grid-item :index="1" v-show="check">
 						<u-icon name="plus" :size="60"></u-icon>
 						<view class="grid-text">盘点</view>
 					</u-grid-item>
-					<u-grid-item :index="2">
+					<u-grid-item :index="2" v-show="search">
 						<u-icon name="search" :size="60"></u-icon>
 						<view class="grid-text">查询</view>
 					</u-grid-item>
-					<u-grid-item :index="3">
+					<u-grid-item :index="3" v-show="form">
 						<u-icon name="order" :size="60"></u-icon>
 						<view class="grid-text">表单</view>
 					</u-grid-item>
-					<u-grid-item :index="4">
+					<u-grid-item :index="4" v-show="maps">
 						<u-icon name="map" :size="60"></u-icon>
 						<view class="grid-text">地图</view>
 					</u-grid-item>
@@ -98,7 +98,12 @@
 </template>
 
 <script>
+	let _this;
 	export default {
+		created() {
+			_this= this;
+			 this.loadingUserPermissions();
+		},
 		data() {
 			return {
 				title: '通知公告',
@@ -106,6 +111,11 @@
 				tabbar: '',
 				isSwiper: false,
 				border: false,
+				qrCode: '',
+				search: '',
+				check: '',
+				form: '',
+				maps: '',
 				col: 4,
 				thumb: '',
 				full:'false',
@@ -133,6 +143,8 @@
 				},
 				
 			]
+			
+			
 		},
 		methods: {
 			isSwiperChange(index) {
@@ -153,7 +165,7 @@
 					uni.navigateTo({
 							url: 'qrCode/qrCode?result='+res.result,
 					});					 }					});				}else if(index == 1){
-					//查询
+					//盘点
 					uni.navigateTo({
 							url: 'check/check',
 					});
@@ -170,7 +182,7 @@
 							url: 'form/form',
 					});
 				}else if(index == 4){
-					//表单
+					//地图
 					uni.navigateTo({
 							url: 'maps/maps',
 					});
@@ -185,6 +197,51 @@
 			change(e) {
 				this.current = e.detail.current;
 			},
+			loadingUserPermissions(){
+				//加载用户权限
+				var path  = this.GLOBAL.src;
+				const value = uni.getStorageSync('setUserData');//缓存中获取用户名
+				var myAccount = value.username;//获取用户名
+				uni.request({
+				    url: path+'/api/menuByMobileUser', //接口地址
+				    data: {
+				        username: myAccount
+				    },
+				    header: {
+							'content-type':'application/json',},
+				    success: (res) => {
+						console.log("值："+JSON.stringify(res.data));
+						//设置值给对应数据
+						if(res.statusCode == 200){
+							for(var i = 0; i < res.data.length; i++){
+							 console.log("值："+res.data[i].path);
+							 var values = res.data[i].path;
+							 if(values=='qrCode'){
+								 this.qrCode = true;
+							 }else if(values=='search'){
+								 this.search = true;
+							 }else if(values=='check'){
+								 this.check = true;
+							 }else if(values=='form'){
+								 this.form = true;
+							 }else if(values=='maps'){
+								 this.maps = true;
+							 }
+							 
+							 
+							}
+							
+						}else{
+							this.$refs.uTips.show({
+											title: '加载失败',
+											type: 'error'
+										});
+						}																				        
+				    }
+				});
+			},
+			
+			
 			// 针对单个grid-item的事件
 			itemClick(index) {
 				 // console.log(index);

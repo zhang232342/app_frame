@@ -6,7 +6,9 @@ import store from './store'
 Vue.use(uView);
 Vue.config.productionTip = false
 Vue.prototype.$store =store;
-
+// 引入API接口文件
+import global_ from './components/api/global'//引用文件
+Vue.prototype.GLOBAL = global_//挂载到Vue实例上面
 App.mpType = 'app'
 
 const app = new Vue({
