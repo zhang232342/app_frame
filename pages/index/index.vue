@@ -1,16 +1,20 @@
 <template>
 	<view class="content">
-		<view>
+		<view style="width:360px;">
 			<u-card :title="title" :sub-title="subTitle" :thumb="thumb" full="full">
 					<view class="" slot="body">
-						<view class="u-body-item u-flex u-border-bottom u-col-between u-p-t-0" @click="contentClick">
+						<view class="u-body-item u-flex u-row-between u-p-b-0" v-for="item in list" >
+						      <view class="u-body-item-title u-line-2">{{item.content}}</view>
+ 
+						</view>
+						<!-- <view class="u-body-item u-flex u-border-bottom u-col-between u-p-t-0" @click="contentClick">
 							<view class="u-body-item-title u-line-2">要说给2020做一份总结的话，那就是去年过得确实还不错。我给自己添置了不少电子好物，科技带来美好，生活幸福感蹭蹭的上升。</view>
 							<image src="https://pic2.zhimg.com/80/v2-134135ca6aed213aba48774e7c1902ea_720w.jpg?source=1940ef5c" mode="aspectFill"></image>
 						</view>
 						<view class="u-body-item u-flex u-row-between u-p-b-0">
 							<view class="u-body-item-title u-line-2">一项以高精度，高真度渲染图闻名的荷兰科技媒体Let'sGoDigital携手知名设计师Jermaine Smit（油管频道为 Concept Creator）带来了 iPhone 12s Pro的高清概念渲染视频。</view>
 							<image src="https://pic1.zhimg.com/80/v2-f5ac64146d736998fb573f4ea04d9bd4_720w.jpg" mode="aspectFill"></image>
-						</view>
+						</view> -->
 					</view>
 				</u-card>
 		</view>
@@ -103,11 +107,13 @@
 		created() {
 			_this= this;
 			 this.loadingUserPermissions();
+			 this.loadlingNotice();
 		},
 		data() {
 			return {
 				title: '通知公告',
 				subTitle: '2021-02-04',
+				list:[],
 				tabbar: '',
 				isSwiper: false,
 				border: false,
@@ -240,7 +246,28 @@
 				    }
 				});
 			},
-			
+			loadlingNotice(){
+				//加载公告信息
+				var path  = this.GLOBAL.src;
+				uni.request({
+				    url: path+'/api/findByStatusNotice', //接口地址
+				    header: {
+							'content-type':'application/json',},
+				    success: (res) => {
+						//设置值给对应数据
+						if(res.statusCode == 200){
+							this.list = JSON.parse(JSON.stringify(res.data));
+							this.subTitle = JSON.parse(JSON.stringify(res.data[0].publish_time));
+							
+						}else{
+							this.$refs.uTips.show({
+											title: '加载失败',
+											type: 'error'
+										});
+						}																				        
+				    }
+				});
+			},
 			
 			// 针对单个grid-item的事件
 			itemClick(index) {
